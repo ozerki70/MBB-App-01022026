@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اپلیکیشن بانک MBBR</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a3d2f">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2784/2784459.png">
+</head>
+<body>
+    <div class="app-container">
+        <!-- هدر با اطلاعات تاریخ و ساعت -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-title">
+                    <div class="app-logo">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="title-wrapper">
+                        <h1>بانک MBBR روسیه</h1>
+                        <p class="app-version">نسخه 01022026</p>
+                    </div>
+                </div>
+                
+                <div class="header-info">
+                    <div class="datetime-container">
+                        <div class="date-info">
+                            <div class="hijri-date" id="hijriDate">در حال بارگذاری...</div>
+                            <div class="gregorian-date" id="gregorianDate"></div>
+                        </div>
+                        <div class="time-weather">
+                            <div class="digital-clock" id="digitalClock">00:00:00</div>
+                            <div class="weather-brief" id="weatherBrief">
+                                <i class="fas fa-thermometer-half"></i>
+                                <span id="currentTemp">--°C</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- شبکه دکمه‌های اصلی -->
+        <div class="main-grid">
+            <!-- گزارش روز اقتصادی -->
+            <button class="app-btn" id="reportBtn">
+                <div class="btn-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <span class="btn-text">گزارش روز اقتصادی</span>
+            </button>
+
+            <!-- نرخ روبل/ریال -->
+            <a href="https://www.mbbru.ru/fizicheskim-litsam/mb-rial/" target="_blank" class="app-btn link-btn">
+                <div class="btn-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <span class="btn-text">نرخ روبل/ریال</span>
+            </a>
+
+            <!-- اینترنت بانک -->
+            <a href="https://ibank.mbbru.ru:1443/web_banking/protected/welcome.jsf" target="_blank" class="app-btn link-btn">
+                <div class="btn-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <span class="btn-text">اینترنت بانک</span>
+            </a>
+
+            <!-- اخبار CBR -->
+            <button class="app-btn" id="newsBtn">
+                <div class="btn-icon">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <span class="btn-text">اخبار CBR روسیه</span>
+            </button>
+
+            <!-- وضعیت جوی -->
+            <button class="app-btn" id="weatherBtn">
+                <div class="btn-icon">
+                    <i class="fas fa-cloud-sun"></i>
+                </div>
+                <span class="btn-text">وضعیت جوی</span>
+            </button>
+
+            <!-- ارتباط با ما -->
+            <div class="dropdown-container">
+                <button class="app-btn dropdown-btn" id="contactBtn">
+                    <div class="btn-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <span class="btn-text">ارتباط با ما</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </button>
+                <div class="dropdown-menu hidden" id="contactMenu">
+                    <a href="tel:+78005000751" class="dropdown-item">
+                        <i class="fas fa-phone"></i>
+                        تماس با کارشناسان
+                    </a>
+                    <a href="mailto:info@mbbru.ru" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        ارسال ایمیل
+                    </a>
+                </div>
+            </div>
+
+            <!-- شعب بانک -->
+            <a href="https://www.mbbru.ru/o-banke/" target="_blank" class="app-btn link-btn">
+                <div class="btn-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <span class="btn-text">شعب بانک</span>
+            </a>
+
+            <!-- تنظیمات -->
+            <button class="app-btn" id="settingsBtn">
+                <div class="btn-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <span class="btn-text">تنظیمات</span>
+            </button>
+        </div>
+
+        <!-- پنل گزارش روز اقتصادی -->
+        <div class="panel-container hidden" id="reportPanel">
+            <div class="panel-header">
+                <button class="back-btn" id="backFromReport">
+                    <i class="fas fa-arrow-right"></i>
+                    بازگشت
+                </button>
+                <h2><i class="fas fa-chart-line"></i> گزارش روز اقتصادی</h2>
+            </div>
+            <div class="panel-content">
+                <div class="report-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="reportDate"></span>
+                </div>
+                
+                <div class="cbr-rates" id="cbrRates">
+                    <!-- داده‌های بانک مرکزی اینجا لود می‌شوند -->
+                </div>
+                
+                <div class="source-info">
+                    <i class="fas fa-info-circle"></i>
+                    <p>منبع: بانک مرکزی روسیه (cbr.ru) - آخرین بروزرسانی: <span id="lastUpdateTime"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- پنل اخبار CBR -->
+        <div class="panel-container hidden" id="newsPanel">
+            <div class="panel-header">
+                <button class="back-btn" id="backFromNews">
+                    <i class="fas fa-arrow-right"></i>
+                    بازگشت
+                </button>
+                <h2><i class="fas fa-newspaper"></i> اخبار بانک مرکزی روسیه</h2>
+            </div>
+            <div class="panel-content">
+                <div class="news-container" id="newsContainer">
+                    <!-- اخبار اینجا لود می‌شوند -->
+                </div>
+            </div>
+        </div>
+
+        <!-- پنل وضعیت جوی -->
+        <div class="panel-container hidden" id="weatherPanel">
+            <div class="panel-header">
+                <button class="back-btn" id="backFromWeather">
+                    <i class="fas fa-arrow-right"></i>
+                    بازگشت
+                </button>
+                <h2><i class="fas fa-cloud-sun"></i> وضعیت جوی</h2>
+            </div>
+            <div class="panel-content">
+                <div class="weather-content" id="weatherContent">
+                    <!-- وضعیت هوا اینجا لود می‌شود -->
+                </div>
+            </div>
+        </div>
+
+        <!-- پنل تنظیمات -->
+        <div class="panel-container hidden" id="settingsPanel">
+            <div class="panel-header">
+                <button class="back-btn" id="backFromSettings">
+                    <i class="fas fa-arrow-right"></i>
+                    بازگشت
+                </button>
+                <h2><i class="fas fa-cog"></i> تنظیمات برنامه</h2>
+            </div>
+            <div class="panel-content">
+                <div class="app-info-card">
+                    <h3><i class="fas fa-info-circle"></i> درباره برنامه</h3>
+                    <div class="info-item">
+                        <strong>توسعه‌دهنده:</strong> تیم adb
+                    </div>
+                    <div class="info-item">
+                        <strong>نسخه:</strong> 01022026
+                    </div>
+                    <div class="info-item">
+                        <strong>آخرین بروزرسانی:</strong> فوریه ۲۰۲۶
+                    </div>
+                    
+                    <div class="features-list">
+                        <h4><i class="fas fa-star"></i> ویژگی‌های برنامه:</h4>
+                        <ul>
+                            <li>خدمات بانکی</li>
+                            <li>اخبار اقتصادی</li>
+                            <li>آدرس شعب</li>
+                            <li>وضعیت آب و هوا</li>
+                            <li>ارتباط با ما</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h4><i class="fas fa-headset"></i> پشتیبانی:</h4>
+                        <p>بانک MBBR روسیه</p>
+                        <p>تلفن: <a href="tel:+78005000751">+7 800 500-07-51</a></p>
+                        <p>ایمیل: <a href="mailto:info@mbbru.ru">info@mbbru.ru</a></p>
+                    </div>
+                </div>
+                
+                <div class="settings-actions">
+                    <button class="settings-btn" id="clearCacheBtn">
+                        <i class="fas fa-trash"></i> پاک کردن حافظه موقت
+                    </button>
+                    <button class="settings-btn primary" id="refreshDataBtn">
+                        <i class="fas fa-sync-alt"></i> بروزرسانی داده‌ها
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay برای منوهای آبشاری -->
+    <div class="overlay hidden" id="overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
