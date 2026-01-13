@@ -1,0 +1,56 @@
+{
+  "name": "بانک MBBR روسیه",
+  "short_name": "MBBR Bank",
+  "description": "اپلیکیشن همراه بانک MBBR روسیه با قابلیت‌های مالی و اقتصادی",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a3d2f",
+  "theme_color": "#0a3d2f",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2784/2784459.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2784/2784459.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "business", "productivity"],
+  "lang": "fa",
+  "dir": "rtl",
+  "scope": "/",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "گزارش روز اقتصادی",
+      "short_name": "گزارش",
+      "description": "مشاهده نرخ‌های اقتصادی",
+      "url": "/#report",
+      "icons": [
+        {
+          "src": "https://cdn-icons-png.flaticon.com/512/3135/3135756.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "وضعیت جوی",
+      "short_name": "آب‌وهوا",
+      "description": "مشاهده وضعیت آب‌وهوا",
+      "url": "/#weather",
+      "icons": [
+        {
+          "src": "https://cdn-icons-png.flaticon.com/512/1163/1163661.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
